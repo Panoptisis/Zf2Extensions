@@ -10,7 +10,7 @@ Parts of these extensions make use of (and rely on) Doctrine. Specifically, the
 ## Installation ##
 The installation of this ZF2 module requires composer. Simply run the following command:
 
-    composer require doctrine/doctrine-orm-module
+    composer require blake/zf-ext
 
 and then add the `Blake\ZfExt` module to your `config/application.config.php`.
 
