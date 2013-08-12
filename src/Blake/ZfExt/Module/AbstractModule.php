@@ -29,6 +29,7 @@ abstract class AbstractModule
 	public function getConfig()
 	{
 		$ref = $this->getReflection();
+		$namespace = $ref->getNamespaceName();
 		$dir = dirname($ref->getFileName());
 
 		// Things that shouldn't need to be changed often
@@ -39,17 +40,17 @@ abstract class AbstractModule
 			// Doctrine settings
 			'doctrine' => [
 				'driver' => [
-					'annotation_driver' => [
+					$namespace . '_annotation_driver' => [
 						'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
 						'cache' => 'array',
 						'paths' => [
-							$dir . '/src/Blog/Entity',
+							$dir . '/src/' . $namespace . '/Entity',
 						],
 					],
 
 					'orm_default' => [
 						'drivers' => [
-							'Blog\Entity' => 'annotation_driver',
+							 $namespace . '\Entity' => $namespace . '_annotation_driver',
 						],
 					],
 				],
@@ -58,7 +59,7 @@ abstract class AbstractModule
 					'orm_default' => [
 						'naming_strategy' => new NamingStrategy,
 						'entity_namespaces' => [
-							'Blog' => 'Blog\Entity',
+							$namespace =>  $namespace . '\Entity',
 						],
 					],
 				],
@@ -69,12 +70,12 @@ abstract class AbstractModule
 				'display_not_found_reason' => APPLICATION_ENV == 'development',
 				'display_exceptions'       => APPLICATION_ENV == 'development',
 				'doctype'                  => 'HTML5',
-				// 'not_found_template'       => 'error/404',
-				// 'exception_template'       => 'error/index',
+				'not_found_template'       => 'error/404',
+				'exception_template'       => 'error/index',
 				'template_map' => [
 					'layout/layout'           => $dir . '/view/layout/layout.phtml',
-					// 'error/404'               => $dir . '/../view/error/404.phtml',
-					// 'error/index'             => $dir . '/../view/error/index.phtml',
+					// 'error/404'               => $dir . '/view/error/404.phtml',
+					// 'error/index'             => $dir . '/view/error/index.phtml',
 				],
 				'template_path_stack' => [
 					$dir . '/view',
