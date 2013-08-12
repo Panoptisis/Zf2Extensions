@@ -1,0 +1,30 @@
+{
+    "name": "blake/zf-ext",
+    "description": "Zend Framework 2 extensions for commonly used goodies.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "module",
+        "zf2",
+        "utilities"
+    ],
+    "homepage": "https://github.com/Panoptisis/Zf2Extensions",
+    "authors": [
+        {
+            "name": "Blake Harley",
+            "email": "blake@blakeharley.com",
+            "homepage": "http://www.blakeharley.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "doctrine/doctrine-orm-module": "0.7.*",
+        "symfony/yaml": "2.3.*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Blake\\ZfExt\\": "src/"
+        }
+    }
+}
